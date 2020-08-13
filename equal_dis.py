@@ -12,7 +12,7 @@ def buildup():
     print(curr_members)
     print(curr_keys)
     if len(curr_keys) <= 8:
-        do_sorting(curr_members, curr_keys)
+        team1, team2 = do_sorting(curr_members, curr_keys)
     else:
         print("Too many players! Not gonna sort!")
 
@@ -27,12 +27,15 @@ def do_sorting(mem, keys):
                 mem[j], mem[j - 1] = mem[j - 1], mem[j]
     print(f'Players:{mem}')
     print(f'Values:{keys}')
+    team1=[]
+    team2=[]
     if len(mem) == 6:
-        form_teams(mem, keys, 3, 3)
+        team1, team2 = form_teams(mem, keys, 3, 3)
     elif len(mem) == 7:
-        form_teams(mem, keys, 4, 3)
+        team1, team2 = form_teams(mem, keys, 4, 3)
     elif len(mem) == 8:
-        form_teams(mem, keys, 4, 4)
+        team1, team2 = form_teams(mem, keys, 4, 4)
+    return team1, team2
 
 
 def form_teams(mem, keys, a, b):
@@ -61,6 +64,7 @@ def form_teams(mem, keys, a, b):
     # print(f"team1={team1keys}:team2={team2keys}:a={a}:b={b}")
     print(f'Team1:{Team_1}')
     print(f'Team2:{Team_2}')
+    return Team_1, Team_2
 
 
-buildup()
+#buildup()
