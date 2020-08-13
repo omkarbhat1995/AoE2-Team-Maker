@@ -1,12 +1,13 @@
 import tkinter as tk
 from tkinter import simpledialog
 from equal_dis import do_sorting
+import pandas as pd
 # from constant import members, keys
 from PIL import ImageTk, Image
 
-members = ['Ajax', 'King_Arthur', 'Mhota', 'GVK', 'Black_Death', 'Noramay', 'Prof', 'Krakken', 'Shans', 'Lihkin',
-           'Starks', 'Peacekeeper']
-keys = [9.5, 6.5, 5, 6, 7, 8, 5, 9, 4, 3.5, 5.5, 3]
+# members = ['Ajax', 'King_Arthur', 'Mhota', 'GVK', 'Black_Death', 'Noramay', 'Prof', 'Krakken', 'Shans', 'Lihkin',
+#          'Starks', 'Peacekeeper']
+# keys = [9.5, 6.5, 5, 6, 7, 8, 5, 9, 4, 3.5, 5.5, 3]
 
 HEIGHT = 600
 WIDTH = 800
@@ -34,7 +35,7 @@ def callback():
 
 
 def load(root):
-    global members, keys,checkVar
+    global members, keys, checkVar
     checkVar = []
     for _ in range(len(members)):
         checkVar.append(tk.IntVar())
@@ -42,8 +43,8 @@ def load(root):
     # background_image = tk.PhotoImage(file='aoe2.png')
     # background_label = tk.Label(root, image=background_image)
     # background_label.place(relwidth=1, relheight=1)
-    #image = ImageTk.PhotoImage(Image.open('aoe2.png'))
-    #canvas.create_image(0, 0, anchor='nw', image=image)
+    # image = ImageTk.PhotoImage(Image.open('aoe2.png'))
+    # canvas.create_image(0, 0, anchor='nw', image=image)
     canvas.pack()
 
     frame = tk.Frame(root, bg="cyan")
@@ -74,6 +75,12 @@ def newplayer():
     keys.append(int(s1))
     print(members)
     print(keys)
+    name = "Players.csv"
+    list1 = []
+    for i in range(len(members)):
+        list1.append([members[i], keys[i]])
+    player = pd.DataFrame(list1, columns=['member', 'keys'])
+    player.to_csv(name)
     load(root)
 
 
@@ -100,10 +107,22 @@ def form_team():
 
 
 def app_page():
-    global root
+    global members, keys, root, checkVar
+
+    df = pd.read_csv("Players.csv", usecols=["member", "keys"])
+    members = df["member"].values.tolist()
+    keys = df["keys"].values.tolist()
+    df = pd.read_csv("Civs.csv", usecols=["arch_civ", "cav_civ", "seige_civ", "inf_civ", "navy_civ", "gun_civ"])
+    arch_civ = df["arch_civ"].values.tolist()
+    cav_civ = df["cav_civ"].values.tolist()
+    seige_civ = df["seige_civ"].values.tolist()
+    inf_civ = df["inf_civ"].values.tolist()
+    navy_civ = df["navy_civ"].values.tolist()
+    gun_civs = df["gun_civ"].values.tolist()
+    print(arch_civ, cav_civ, seige_civ, inf_civ, navy_civ, gun_civs)
+
     root = tk.Tk()
 
-    global checkVar
     canvas, frame, label, C, button, button1, checkVar = load(root)
     root.mainloop()
 
