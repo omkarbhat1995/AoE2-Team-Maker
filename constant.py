@@ -7,7 +7,7 @@ arch_civ = ['Britons', 'Chinese', "Mongols", "Mayans", "Italians"]
 cav_civ = ["Franks", "Persians", "Sarracens", "Huns", "Indians", "Magyars"]
 seige_civ = ["Celts", "Mongols", "Slavs"]
 inf_civ = ["Celts", "Goths", "Japanese", "Teutons", "Vikings", "Aztecs", "Incas", "Slavs"]
-navy_civ = ["Japanese", "Sarracens", "Byzantines", "Vikings", "Korean", "Italians"]
+navy_civ = ["Japanese", "Saracens", "Byzantines", "Vikings", "Korean", "Italians"]
 gun_civs = ["Turks", "Spanish", "Indians"]
 
 # Byzantines- Defense
